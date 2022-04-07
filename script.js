@@ -13,7 +13,6 @@ fetch("https://openexchangerates.org/api/currencies.json", {
     return data
 })
 
-
 fetch('https://openexchangerates.org/api/latest.json?app_id=8aa1c434ba634b4f938302271614ce30', {
     method: 'GET',
     headers: {},
@@ -23,6 +22,7 @@ fetch('https://openexchangerates.org/api/latest.json?app_id=8aa1c434ba634b4f9383
 })
 .then(function(data) {
     let conversions = data.rates;
+    console.log(conversions)
     let keys = Object.keys(conversions)
 
     let selectInitial = document.createElement("select");
@@ -68,4 +68,3 @@ fetch('https://openexchangerates.org/api/latest.json?app_id=8aa1c434ba634b4f9383
 
     finalDiv.appendChild(label).appendChild(selectFinal);
 })
-

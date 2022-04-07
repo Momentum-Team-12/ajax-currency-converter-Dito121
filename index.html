@@ -13,16 +13,16 @@
 </head> 
 
 <header> 
-    <h1 class="title"> Currency Converter </h1> 
+    <h1 id="title"> Currency Converter </h1> 
 </header> 
 
 <body> 
+<div class="content" id="container"> 
+    <div class="content" id="initial"> </div> 
 
-    <div id="initial"> </div> 
+    <div class="content" id="final"> </div> 
 
-    <div id="final"> </div> 
-
-    <div id="input"> 
+    <div class="content" id="input"> 
         <form>
             Enter amount to convert: <input type="text" id="amount"/>
             <input type="submit" value="Submit" onclick="formData(); return false"/>
@@ -37,14 +37,13 @@
 
             let resultDiv = document.getElementById('result');
             resultDiv.innerText = amount * conversion
-
         }
         </script>
 
     </div> 
 
     <div id="result"> </div> 
-
+</div> 
 </body> 
 
 </html> 
