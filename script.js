@@ -49,8 +49,6 @@ fetch('https://openexchangerates.org/api/latest.json?app_id=8aa1c434ba634b4f9383
 
     let conversions = data.rates;
     let keys = Object.keys(conversions)
-    console.log(conversions)
-    console.log(conversions.HNL)
 
     let selectFinal = document.createElement("select");
     selectFinal.id = "finalCurrency"

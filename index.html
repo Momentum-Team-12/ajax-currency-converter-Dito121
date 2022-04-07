@@ -25,7 +25,7 @@
     <div id="input"> 
         <form>
             Enter amount to convert: <input type="text" id="amount"/>
-            <input type="submit" value="Submit" onclick="formData()"/>
+            <input type="submit" value="Submit" onclick="formData(); return false"/>
         </form>
 
         <script> 
@@ -35,16 +35,15 @@
             let select = document.getElementById('finalCurrency');
             let conversion = select.value
 
-            console.log(amount)
-            console.log(conversion)
+            let resultDiv = document.getElementById('result');
+            resultDiv.innerText = amount * conversion
 
-            alert(amount * conversion)
         }
         </script>
 
     </div> 
 
-    <div id="content"> </div> 
+    <div id="result"> </div> 
 
 </body> 
 
