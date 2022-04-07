@@ -10,7 +10,6 @@ fetch("https://openexchangerates.org/api/currencies.json", {
     return response.json()
 })
 .then(function(data) {
-    console.log(data)
     return data
 })
 
@@ -24,16 +23,15 @@ fetch('https://openexchangerates.org/api/latest.json?app_id=8aa1c434ba634b4f9383
 })
 .then(function(data) {
     let conversions = data.rates;
-    console.log(conversions)
     let keys = Object.keys(conversions)
 
     let selectInitial = document.createElement("select");
-    selectInitial.name = "initialCurrency";
     selectInitial.id = "initialCurrency"
 
     for (let key of keys) {
         let option = document.createElement("option");
         option.id = key;
+        option.value = conversions.key
         option.innerText = key;
         selectInitial.appendChild(option);
     }
@@ -45,33 +43,22 @@ fetch('https://openexchangerates.org/api/latest.json?app_id=8aa1c434ba634b4f9383
 
     initialDiv.appendChild(label).appendChild(selectInitial);
 
-    function formData() {
-        let amountBefore = document.getElementById("amount").value;
-
-        let conv = document.getElementById('final')
-        let conversion = conv.value
-        console.log(conversion)
-
-        console.log(conversions.conversion)
-        let answer = amountBefore * conversions.conversion
-
-        document.writeln("<h1>Confirmation Page</h1><br>");
-    }
-
     return data;
 })
 .then(function(data) {
 
-    let values = data.rates;
-    let keys = Object.keys(data.rates)
+    let conversions = data.rates;
+    let keys = Object.keys(conversions)
+    console.log(conversions)
+    console.log(conversions.HNL)
 
     let selectFinal = document.createElement("select");
-    selectFinal.name = "finalCurrency";
     selectFinal.id = "finalCurrency"
 
     for (let key of keys) {
         let option = document.createElement("option");
-        option.value = key;
+        option.id = key;
+        option.value = conversions[key]
         option.innerText = key;
         selectFinal.appendChild(option);
     }

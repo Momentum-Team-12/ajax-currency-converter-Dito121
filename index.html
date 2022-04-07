@@ -27,6 +27,21 @@
             Enter amount to convert: <input type="text" id="amount"/>
             <input type="submit" value="Submit" onclick="formData()"/>
         </form>
+
+        <script> 
+        function formData() {
+            let amount = document.getElementById('amount').value
+
+            let select = document.getElementById('finalCurrency');
+            let conversion = select.value
+
+            console.log(amount)
+            console.log(conversion)
+
+            alert(amount * conversion)
+        }
+        </script>
+
     </div> 
 
     <div id="content"> </div> 
