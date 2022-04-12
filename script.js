@@ -2,17 +2,6 @@ let initialDiv = document.getElementById('initial')
 let finalDiv = document.getElementById('final')
 let contentDiv = document.getElementById('content')
 
-fetch("https://openexchangerates.org/api/currencies.json", {
-    method: 'GET',
-    headers: {},
-})
-.then(function(response) {
-    return response.json()
-})
-.then(function(data) {
-    return data
-})
-
 fetch('https://openexchangerates.org/api/latest.json?app_id=8aa1c434ba634b4f938302271614ce30', {
     method: 'GET',
     headers: {},
@@ -61,6 +50,17 @@ fetch('https://openexchangerates.org/api/latest.json?app_id=8aa1c434ba634b4f9383
 
     finalDiv.appendChild(finalLabel)
     finalDiv.appendChild(selectFinal);
+})
+
+fetch("https://openexchangerates.org/api/currencies.json", {
+    method: 'GET',
+    headers: {},
+})
+.then(function(response) {
+    return response.json()
+})
+.then(function(data) {
+    return data
 })
 
 function formData() {
