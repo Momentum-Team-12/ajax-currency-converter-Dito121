@@ -1,5 +1,4 @@
 #title {
-    text-align: center;
     font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 
@@ -12,16 +11,15 @@
     font-family: Times, "Times New Roman", Georgia, serif;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
 }
 
 #initial {
     padding: 25px;
-    border: 3px solid red;
 }
 
 #final {
     padding: 25px;
-    border: 3px solid blue;
 }
 
 #input{

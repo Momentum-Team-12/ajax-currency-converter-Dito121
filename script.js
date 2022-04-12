@@ -21,50 +21,57 @@ fetch('https://openexchangerates.org/api/latest.json?app_id=8aa1c434ba634b4f9383
     return response.json()
 })
 .then(function(data) {
-    let conversions = data.rates;
-    console.log(conversions)
+    let conversions = data.rates
     let keys = Object.keys(conversions)
 
-    let selectInitial = document.createElement("select");
+    let selectInitial = document.createElement("select")
     selectInitial.id = "initialCurrency"
 
-    for (let key of keys) {
-        let option = document.createElement("option");
-        option.id = key;
-        option.value = conversions.key
-        option.innerText = key;
-        selectInitial.appendChild(option);
-    }
-
-    let label = document.createElement("label");
-    let innerDiv = document.createElement("div");
-    innerDiv.innerText = "Choose initial currency: "
-    label.appendChild(innerDiv);
-
-    initialDiv.appendChild(label).appendChild(selectInitial);
-
-    return data;
-})
-.then(function(data) {
-
-    let conversions = data.rates;
-    let keys = Object.keys(conversions)
-
-    let selectFinal = document.createElement("select");
+    let selectFinal = document.createElement("select")
     selectFinal.id = "finalCurrency"
 
     for (let key of keys) {
-        let option = document.createElement("option");
-        option.id = key;
+        let option = document.createElement("option")
+        option.id = key
         option.value = conversions[key]
-        option.innerText = key;
-        selectFinal.appendChild(option);
+        option.innerText = key
+        selectInitial.appendChild(option)
     }
 
-    let label = document.createElement("label");
-    let innerDiv = document.createElement("div");
-    innerDiv.innerText = "Choose final currency: "
-    label.appendChild(innerDiv);
+    for (let key of keys) {
+        let option = document.createElement("option")
+        option.id = key
+        option.value = conversions[key]
+        option.innerText = key
+        selectFinal.appendChild(option)
+    }
 
-    finalDiv.appendChild(label).appendChild(selectFinal);
+    let initialLabel = document.createElement("label")
+    let initialInnerDiv = document.createElement("div")
+    initialInnerDiv.innerText = "Choose initial currency: "
+    initialLabel.appendChild(initialInnerDiv)
+
+    initialDiv.appendChild(initialLabel)
+    initialDiv.appendChild(selectInitial);
+
+    let finalLabel = document.createElement("label")
+    let finalInnerDiv = document.createElement("div")
+    finalInnerDiv.innerText = "Choose final currency: "
+    finalLabel.appendChild(finalInnerDiv)
+
+    finalDiv.appendChild(finalLabel)
+    finalDiv.appendChild(selectFinal);
 })
+
+function formData() {
+    let selectInitial = document.getElementById('initialCurrency')
+    let initialAmount = selectInitial.options[selectInitial.selectedIndex].value
+
+    let selectFinal = document.getElementById('finalCurrency')
+    let finalAmount = selectFinal.options[selectFinal.selectedIndex].value
+
+    let amount = document.getElementById('amount').value
+
+    let resultDiv = document.getElementById('result')
+    resultDiv.innerText = amount / initialAmount * finalAmount
+}
