@@ -1,6 +1,6 @@
 let initialDiv = document.getElementById('initial')
 let finalDiv = document.getElementById('final')
-let contentDiv = document.getElementById('content')
+let resultDiv = document.getElementById('result')
 
 fetch('https://openexchangerates.org/api/latest.json?app_id=8aa1c434ba634b4f938302271614ce30', {
     method: 'GET',
@@ -60,8 +60,28 @@ fetch("https://openexchangerates.org/api/currencies.json", {
     return response.json()
 })
 .then(function(data) {
-    return data
+    let selectResult = document.createElement("select")
+    selectResult.id = "currencyKey"
+
+    for (const [key, value] of Object.entries(data)) {
+        let option = document.createElement("option")
+        option.innerText = `${key}: ${value}`
+        selectResult.appendChild(option)
+    }
+
+    resultDiv.appendChild(selectResult)
 })
+
+// fetch("", {
+//     method: 'GET',
+//     headers: {},
+// })
+// .then(function(response) {
+//     return response.json()
+// })
+// .then(function(data) {
+//     console.log(data)
+// }
 
 function formData() {
     let selectInitial = document.getElementById('initialCurrency')
@@ -72,6 +92,5 @@ function formData() {
 
     let amount = document.getElementById('amount').value
 
-    let resultDiv = document.getElementById('result')
     resultDiv.innerText = amount / initialAmount * finalAmount
 }
