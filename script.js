@@ -1,6 +1,7 @@
 let initialDiv = document.getElementById('initial')
 let finalDiv = document.getElementById('final')
 let resultDiv = document.getElementById('result')
+let conversionDiv = document.getElementById('conversion')
 
 fetch('https://openexchangerates.org/api/latest.json?app_id=8aa1c434ba634b4f938302271614ce30', {
     method: 'GET',
@@ -66,21 +67,35 @@ fetch("https://openexchangerates.org/api/currencies.json", {
     for (const [key, value] of Object.entries(data)) {
         let option = document.createElement("option")
         option.innerText = `${key}: ${value}`
+
+        if (key.slice(0,2) !== 'XD' && key.slice(0,2) !== 'AN' && key.slice(0,2) !== 'XA' 
+        && key.slice(0,2) !== 'XO' && key.slice(0,2) !== 'XP' && key.slice(0,2) !== 'XC') {
+            let image = document.createElement("img")
+            image.src = `https://flagcdn.com/16x12/${key.slice(0,2).toLowerCase()}.png`
+            // image.srcset = `https://flagcdn.com/32x24/${key.slice(0,2).toLowerCase()}.png 2x, https://flagcdn.com/48x36/${key.slice(0,2).toLowerCase()}.png 3x`
+            image.width = "16"
+            image.height = "12"
+            // image.innerText = getFlag(key.slice(0,2).toLowerCase())
+            option.appendChild(image)
+        }
+
         selectResult.appendChild(option)
     }
 
     resultDiv.appendChild(selectResult)
 })
 
-// fetch("", {
+// function getFlag(country) {
+//     fetch(`https://flagcdn.com/28x21/${country}.png`, {
 //     method: 'GET',
 //     headers: {},
-// })
-// .then(function(response) {
-//     return response.json()
-// })
-// .then(function(data) {
-//     console.log(data)
+//     })
+//     .then(function(response) {
+//         return response.json()
+//     })
+//     .then(function(data) {
+//         return data
+//     })
 // }
 
 function formData() {
@@ -92,5 +107,5 @@ function formData() {
 
     let amount = document.getElementById('amount').value
 
-    resultDiv.innerText = amount / initialAmount * finalAmount
+    conversionDiv.innerText = amount / initialAmount * finalAmount
 }
