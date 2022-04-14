@@ -2,6 +2,7 @@ let initialDiv = document.getElementById('initial')
 let finalDiv = document.getElementById('final')
 let resultDiv = document.getElementById('result')
 let conversionDiv = document.getElementById('conversion')
+// define divs in our html by ID
 
 fetch('https://openexchangerates.org/api/latest.json?app_id=8aa1c434ba634b4f938302271614ce30', {
     method: 'GET',
@@ -37,17 +38,13 @@ fetch('https://openexchangerates.org/api/latest.json?app_id=8aa1c434ba634b4f9383
     }
 
     let initialLabel = document.createElement("label")
-    let initialInnerDiv = document.createElement("div")
-    initialInnerDiv.innerText = "Choose initial currency: "
-    initialLabel.appendChild(initialInnerDiv)
+    initialLabel.innerText = "Choose initial currency"
 
     initialDiv.appendChild(initialLabel)
-    initialDiv.appendChild(selectInitial);
+    initialDiv.appendChild(selectInitial)
 
     let finalLabel = document.createElement("label")
-    let finalInnerDiv = document.createElement("div")
-    finalInnerDiv.innerText = "Choose final currency: "
-    finalLabel.appendChild(finalInnerDiv)
+    finalLabel.innerText = "Choose final currency: "
 
     finalDiv.appendChild(finalLabel)
     finalDiv.appendChild(selectFinal);
