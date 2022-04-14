@@ -61,7 +61,7 @@ fetch("https://openexchangerates.org/api/currencies.json", {
 })
 .then(function(data) {
     let selectKey = document.createElement("select")
-    selectResult.id = "currencyKey"
+    selectKey.id = "currencyKey"
 
     for (const [key, value] of Object.entries(data)) {
         let option = document.createElement("option")
